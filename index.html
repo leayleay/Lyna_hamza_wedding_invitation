@@ -84,15 +84,23 @@
   /* parallax outer — JS moves this, NO transition so it snaps to 60fps */
   .hero-bg{
     position:absolute;
-    inset:-35% 0 -35% 0;   /* extra room top+bottom for the parallax travel */
+    inset:-35% 0 -35% 0;
     will-change:transform;
   }
 
-  /* photo layer — Ken Burns on scale only, no conflict with parent translateY */
+  /* blurred fill — same photo stretched to cover, fills the edges */
+  .hero-bg-blur{
+    position:absolute;
+    inset:-5%;
+    background:url('IMG_6396.JPG') center 40% / cover no-repeat;
+    filter:blur(22px) brightness(.65);
+  }
+
+  /* sharp full photo centered — contain shows all 4 sides */
   .hero-bg-inner{
     position:absolute;
     inset:0;
-    background:url('IMG_6396.JPG') center 40% / cover no-repeat;
+    background:url('IMG_6396.JPG') center 40% / contain no-repeat;
     animation:kenBurns 28s ease-in-out infinite alternate;
     transform-origin:center center;
   }
@@ -124,48 +132,7 @@
   .hero > *:not(.hero-bg):not(.hero-veil){position:relative;z-index:2;}
 
   /* fairy lights */
-  .fairy-lights{
-    position:absolute;top:0;left:0;width:100%;height:140px;z-index:3;
-    background:
-      radial-gradient(circle at 14% 28%, var(--gold-light) 0 2px, transparent 3px),
-      radial-gradient(circle at 35% 16%, #fff8e6 0 2px, transparent 3px),
-      radial-gradient(circle at 57% 32%, var(--gold-light) 0 2px, transparent 3px),
-      radial-gradient(circle at 76% 20%, #fff8e6 0 1.5px, transparent 3px),
-      radial-gradient(circle at 25% 48%, var(--gold-light) 0 1.5px, transparent 3px),
-      radial-gradient(circle at 88% 44%, #fff8e6 0 1.5px, transparent 3px),
-      radial-gradient(circle at 50% 10%, var(--gold-light) 0 1.5px, transparent 3px);
-    opacity:.9;
-    animation:twinkle 3.5s ease-in-out infinite;
-  }
-  @keyframes twinkle{0%,100%{opacity:.45}50%{opacity:1}}
 
-  /* floating gold sparkles */
-  .sparkles{
-    position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none;
-  }
-  .sparkles span{
-    position:absolute;
-    bottom:-10px;
-    width:4px;height:4px;
-    border-radius:50%;
-    background:var(--gold-light);
-    opacity:0;
-    animation:floatUp 6s ease-in infinite;
-  }
-  .sparkles span:nth-child(1){left:8%;  animation-delay:0s;   animation-duration:7s;}
-  .sparkles span:nth-child(2){left:22%; animation-delay:1.2s; animation-duration:5.5s;width:3px;height:3px;}
-  .sparkles span:nth-child(3){left:40%; animation-delay:2.4s; animation-duration:6.5s;}
-  .sparkles span:nth-child(4){left:58%; animation-delay:.8s;  animation-duration:7.5s;width:5px;height:5px;}
-  .sparkles span:nth-child(5){left:74%; animation-delay:1.8s; animation-duration:5s;}
-  .sparkles span:nth-child(6){left:88%; animation-delay:3.2s; animation-duration:6s;width:3px;height:3px;}
-  .sparkles span:nth-child(7){left:32%; animation-delay:4s;   animation-duration:8s;}
-  .sparkles span:nth-child(8){left:65%; animation-delay:0.4s; animation-duration:6.8s;width:3px;height:3px;}
-  @keyframes floatUp{
-    0%  {transform:translateY(0)   scale(0);opacity:0;}
-    10% {opacity:.9;}
-    90% {opacity:.5;}
-    100%{transform:translateY(-100vh) scale(1.5);opacity:0;}
-  }
 
   /* hero entrance animations */
   @keyframes dropIn{
@@ -342,6 +309,7 @@
     border-radius:50%;background:var(--cream);border:1px solid var(--gold-light);
     display:flex;align-items:center;justify-content:center;
     font-size:14px;color:var(--gold);font-family:var(--serif);
+    font-variant-emoji:text;
     transition:box-shadow .3s,transform .3s;
   }
   .tl-item.visible .tl-dot{box-shadow:0 0 14px rgba(201,165,92,.45);}
@@ -473,7 +441,7 @@
 
   <!-- HERO -->
   <header class="hero" id="hero">
-    <div class="hero-bg" id="heroBg"><div class="hero-bg-inner"></div></div>
+    <div class="hero-bg" id="heroBg"><div class="hero-bg-blur"></div><div class="hero-bg-inner"></div></div>
     <div class="hero-veil"></div>
     <div class="fairy-lights"></div>
     <div class="sparkles">
@@ -497,11 +465,7 @@
   <section class="music" data-reveal="fade">
     <div class="now">EN ÉCOUTE — NOTRE CHANSON</div>
     <div class="player">
-      <button title="shuffle">&#8646;</button>
-      <button title="previous">&#9198;</button>
-      <button class="play" id="playBtn" title="play">&#9654;</button>
-      <button title="next">&#9197;</button>
-      <button title="repeat">&#8635;</button>
+      <button class="play" id="playBtn" title="play/pause">&#9654;&#xFE0E;</button>
     </div>
     <div class="progress"><i></i></div>
   </section>
@@ -531,10 +495,10 @@
     <div class="heading" data-reveal>GRAND JOUR</div>
     <div class="divider" data-reveal="scale"></div>
     <div class="timeline stagger">
-      <div class="tl-item" data-reveal="left"><div class="tl-dot">✦</div><div class="tl-time">12H00</div><div class="tl-name">Arrivée des invités</div></div>
-      <div class="tl-item" data-reveal="left"><div class="tl-dot">◇</div><div class="tl-time">13H00</div><div class="tl-name">Déjeuner</div></div>
-      <div class="tl-item" data-reveal="left"><div class="tl-dot">♡</div><div class="tl-time">15H00</div><div class="tl-name">Échange des bagues</div></div>
-      <div class="tl-item" data-reveal="left"><div class="tl-dot">♫</div><div class="tl-time">16H00</div><div class="tl-name">Soirée dansante</div></div>
+      <div class="tl-item" data-reveal="left"><div class="tl-dot">✦&#xFE0E;</div><div class="tl-time">12H00</div><div class="tl-name">Arrivée des invités</div></div>
+      <div class="tl-item" data-reveal="left"><div class="tl-dot">◇&#xFE0E;</div><div class="tl-time">13H00</div><div class="tl-name">Déjeuner</div></div>
+      <div class="tl-item" data-reveal="left"><div class="tl-dot">♡&#xFE0E;</div><div class="tl-time">15H00</div><div class="tl-name">Échange des bagues</div></div>
+      <div class="tl-item" data-reveal="left"><div class="tl-dot">♫&#xFE0E;</div><div class="tl-time">16H00</div><div class="tl-name">Soirée dansante</div></div>
     </div>
   </section>
 
@@ -570,7 +534,7 @@
       <hr>
       <div class="course">DESSERT</div>
       <h4>La Douceur Finale</h4>
-      <p>Gâteau de mariage<br><span style="font-size:13px;opacity:.75;">&amp; plateau de fruits frais par table</span></p>
+      <p>Gâteau de mariage<br><span style="font-size:13px;opacity:.75;"></span></p>
     </div>
     <p style="text-align:center;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--gold-light);margin-top:20px;" data-reveal>Vous choisirez votre plat principal dans le formulaire de réponse ci-dessous.</p>
   </section>
@@ -714,7 +678,7 @@
   const pb = document.getElementById('playBtn');
 
   function syncBtn(){
-    pb.innerHTML = audio.paused ? '&#9654;' : '&#10074;&#10074;';
+    pb.innerHTML = audio.paused ? '&#9654;&#xFE0E;' : '&#10074;&#xFE0E;&#10074;&#xFE0E;';
   }
 
   audio.play().then(syncBtn).catch(() => {
