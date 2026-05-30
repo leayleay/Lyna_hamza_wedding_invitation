@@ -585,7 +585,7 @@
     <div class="rsvp-q" data-reveal>Prêts à fêter ça ?</div>
     <div class="rsvp-sub" data-reveal>Remplissez le formulaire ci-dessous et faites-nous savoir que vous serez des nôtres !</div>
     <a class="rsvp-btn" href="https://docs.google.com/forms/d/1r2u9Jt2i7SM8a9QGMz1BMZBGoxKNPq9oBvvAasYnxaA/viewform" target="_blank" data-reveal="scale">&#8595; RÉPONDRE &#8595;</a>
-    <div class="rsvp-note" data-reveal>/div>
+    <div class="rsvp-note" data-reveal></div>
   </section>
 
   <!-- FOOTER -->
@@ -672,25 +672,7 @@
   },{threshold:0.5});
   headings.forEach(h=>headObs.observe(h));
 
-  /* ---- Gallery slider ---- */
-  const slidesEl = document.getElementById('slides');
-  const dotsEl   = document.getElementById('dots');
-  const total = slidesEl.children.length;
-  let idx = 0;
-  for(let i=0;i<total;i++){
-    const dot=document.createElement('i');
-    dot.onclick=()=>go(i);
-    dotsEl.appendChild(dot);
-  }
-  function go(i){
-    idx=(i+total)%total;
-    slidesEl.style.transform=`translateX(-${idx*100}%)`;
-    [...dotsEl.children].forEach((d,n)=>d.classList.toggle('on',n===idx));
-  }
-  document.getElementById('next').onclick=()=>go(idx+1);
-  document.getElementById('prev').onclick=()=>go(idx-1);
-  go(0);
-  setInterval(()=>go(idx+1),5000);
+
 
   /* ---- Audio ---- */
   const audio = new Audio('love-story.mp3');
