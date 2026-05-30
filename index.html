@@ -27,17 +27,19 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;overflow-x:hidden;}
+  html{scroll-behavior:smooth;}
 
   /* full-page fixed photo background */
   body{
     font-family:var(--sans);
     color:var(--ink);
+    background:#100a06;
+  }
+  .page-wrap{
     display:flex;
     justify-content:center;
     min-height:100vh;
     overflow-x:hidden;
-    background:#100a06;
   }
   /* fixed background image — separate element so Android Chrome renders it correctly
      (background-attachment:fixed is broken on Android and blocks scrolling) */
@@ -441,6 +443,7 @@
 
 </style>
 
+<div class="page-wrap">
 <div class="page-bg"></div>
 <div class="invite">
 
@@ -571,6 +574,7 @@
     <div class="amp" data-reveal>LYNA &amp; HAMZA · 2026</div>
   </footer>
 
+</div>
 </div>
 
 <script>
