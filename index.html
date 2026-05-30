@@ -40,6 +40,8 @@
     justify-content:center;
     min-height:100vh;
     overflow-x:hidden;
+    position:relative;
+    z-index:1;
   }
   /* fixed background image — separate element so Android Chrome renders it correctly
      (background-attachment:fixed is broken on Android and blocks scrolling) */
@@ -443,8 +445,8 @@
 
 </style>
 
-<div class="page-wrap">
 <div class="page-bg"></div>
+<div class="page-wrap">
 <div class="invite">
 
   <!-- HERO -->
