@@ -37,7 +37,16 @@
     justify-content:center;
     min-height:100vh;
     overflow-x:hidden;
-    background:url('IMG_6396.JPG') fixed center / cover no-repeat;
+    background:#100a06;
+  }
+  /* fixed background image — separate element so Android Chrome renders it correctly
+     (background-attachment:fixed is broken on Android and blocks scrolling) */
+  .page-bg{
+    position:fixed;
+    inset:0;
+    background:url('IMG_6396.JPG') center / cover no-repeat;
+    z-index:-1;
+    pointer-events:none;
   }
   /* dark warm veil over the whole page background */
   body::before{
@@ -432,6 +441,7 @@
 
 </style>
 
+<div class="page-bg"></div>
 <div class="invite">
 
   <!-- HERO -->
@@ -445,7 +455,7 @@
     </div>
     <div class="faire-part">Avec joie et bonheur</div>
     <div class="families">LA FAMILLE HEMIDJ</div>
-    <div class="invite-line">VOUS INVITE AU MARIAGE<br>DE SA FILLE</div>
+    <div class="invite-line">VOUS INVITE AU MARIAGE<br>DE LEUR FILLE</div>
     <div class="names">LYNA</div>
     <div class="hero-orn"><i></i></div>
     <div class="date-row">
